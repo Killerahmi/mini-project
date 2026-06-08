@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My 6 HTML & CSS Projects</title>
+  <style>
+    /* ── RESET & BASE ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; color: #222; }
+
+    /* ── NAV ── */
+    nav {
+      background: #1a1a2e;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav span { color: #aaa; font-size: 13px; margin-right: 4px; }
+    nav button {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1.5px solid transparent;
+      background: rgba(255,255,255,0.08);
+      color: #ccc;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    nav button:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    nav button.active { background: #fff; color: #1a1a2e; font-weight: 500; border-color: #fff; }
+
+    /* ── PAGE ── */
+    .page { display: none; min-height: calc(100vh - 52px); padding: 40px 20px; }
+    .page.active { display: block; }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #111;
+    }
+    .page-desc {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 99px;
+      font-weight: 500;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ═══════════════════════════════
+       PROJECT 1 — PROFILE CARD
+    ═══════════════════════════════ */
+    .card-wrap { display: flex; justify-content: center; }
+    .profile-card {
+      width: 260px;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .profile-avatar {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: #eeedfe;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+    .profile-name { font-size: 20px; font-weight: 600; color: #222; margin-bottom: 6px; }
+    .profile-role {
+      display: inline-block;
+      background: #e6f1fb;
+      color: #185fa5;
+      font-size: 12px;
+      padding: 3px 12px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+    }
+    .profile-bio { font-size: 14px; color: #666; line-height: 1.6; }
+
+    /* ═══════════════════════════════
+       PROJECT 2 — TO-DO LIST
+    ═══════════════════════════════ */
+    .todo-wrap { display: flex; justify-content: center; }
+    .todo-box {
+      width: 320px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .todo-box h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .todo-box ul { list-style: none; }
+    .todo-box li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid #f2f2f2;
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .todo-box li:last-child { border-bottom: none; }
+    .todo-box li input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: #1D9E75; }
+    .todo-box li.done span { text-decoration: line-through; color: #aaa; }
+
+    /* Add task input */
+    .todo-add {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #eee;
+    }
+    .todo-add input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .todo-add button {
+      padding: 8px 14px;
+      background: #1D9E75;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════
+       PROJECT 3 — CONTACT FORM
+    ═══════════════════════════════ */
+    .form-wrap { display: flex; justify-content: center; }
+    .form-box {
+      width: 360px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .form-box h2 { font-size: 20px; font-weight: 600; margin-bottom: 20px; }
+    .field { margin-bottom: 16px; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .field input, .field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus {
+      outline: none;
+      border-color: #D85A30;
+    }
+    .field textarea { resize: vertical; }
+    .submit-btn {
+      width: 100%;
+      padding: 11px;
+      background: #D85A30;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #993C1D; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: #0F6E56;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    /* ═══════════════════════════════
+       PROJECT 4 — PRICING CARDS
+    ═══════════════════════════════ */
+    .pricing-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .pricing-card {
+      flex: 1;
+      min-width: 200px;
+      max-width: 240px;
+      border: 1.5px solid #ddd;
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.10); }
+    .pricing-card.popular { border: 2.5px solid #185FA5; }
+    .popular-badge {
+      background: #e6f1fb;
+      color: #185FA5;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 99px;
+      display: inline-block;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .plan-name { font-size: 14px; color: #888; margin-bottom: 8px; }
+    .plan-price { font-size: 34px; font-weight: 700; color: #111; margin-bottom: 16px; }
+    .plan-price span { font-size: 16px; font-weight: 400; color: #888; }
+    .plan-features { list-style: none; font-size: 14px; color: #555; line-height: 2.2; margin-bottom: 20px; }
+    .plan-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1.5px solid #ccc;
+      background: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .plan-btn:hover { background: #f5f5f5; }
+    .plan-btn.primary { background: #185FA5; color: #fff; border-color: #185FA5; }
+    .plan-btn.primary:hover { background: #0C447C; }
+
+    /* ═══════════════════════════════
+       PROJECT 5 — COLOR CHANGER
+    ═══════════════════════════════ */
+    #color-page {
+      min-height: calc(100vh - 52px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.5s;
+      padding: 40px 20px;
+    }
+    #color-page .page-title { text-align: center; }
+    #color-page .page-desc { text-align: center; }
+    .color-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+    .color-btn {
+      padding: 11px 24px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .color-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .color-btn:active { transform: scale(0.97); }
+    #color-label {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #666;
+      transition: color 0.3s;
+    }
+
+    /* ═══════════════════════════════
+       PROJECT 6 — TIP CALCULATOR
+    ═══════════════════════════════ */
+    .calc-wrap { display: flex; justify-content: center; }
+    .calculator {
+      width: 360px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .calculator h2 { font-size: 20px; font-weight: 600; margin-bottom: 20px; }
+    .tip-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .tip-btn {
+      flex: 1;
+      padding: 10px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      background: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tip-btn:hover { border-color: #BA7517; color: #BA7517; }
+    .tip-btn.active { background: #BA7517; color: #fff; border-color: #BA7517; }
+    .result-box {
+      background: #f8f8f8;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 6px;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .result-row.total {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 0;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+    .result-row span:last-child { font-weight: 500; color: #111; }
+    .result-row.total span:last-child { color: #BA7517; font-size: 18px; }
+    .split-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .split-row label { font-size: 13px; color: #555; font-weight: 500; }
+    .split-row input {
+      width: 60px;
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .split-note { font-size: 12px; color: #888; margin-left: auto; }
+
+    /* ═══════════════════════════════
+       SHARED HELPERS
+    ═══════════════════════════════ */
+    @media (max-width: 500px) {
+      .pricing-card { max-width: 100%; }
+      .profile-card, .todo-box, .form-box, .calculator { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <span>My Projects:</span>
+  <button class="active" onclick="show('p1', this)">1. Profile Card</button>
+  <button onclick="show('p2', this)">2. To-Do List</button>
+  <button onclick="show('p3', this)">3. Contact Form</button>
+  <button onclick="show('p4', this)">4. Pricing Cards</button>
+  <button onclick="show('p5', this)">5. Color Changer</button>
+  <button onclick="show('p6', this)">6. Tip Calculator</button>
+</nav>
+
+<!-- ══════════════════════════════════
+     PROJECT 1 — PROFILE CARD
+══════════════════════════════════ -->
+<div class="page active" id="p1">
+  <div class="page-title">Profile Card <span class="badge" style="background:#EEEDFE;color:#534AB7">HTML + CSS</span></div>
+  <div class="page-desc">A centered card with a name, role badge, and bio.</div>
+  <div class="card-wrap">
+    <div class="profile-card">
+      <div class="profile-avatar">🧑</div>
+      <div class="profile-name">Ahmed Khan</div>
+      <div class="profile-role">Web Developer</div>
+      <p class="profile-bio">Learning HTML &amp; CSS one project at a time. Building real things every day.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PROJECT 2 — TO-DO LIST
+══════════════════════════════════ -->
+<div class="page" id="p2">
+  <div class="page-title">To-Do List <span class="badge" style="background:#E1F5EE;color:#0F6E56">HTML + CSS + JS</span></div>
+  <div class="page-desc">Click a checkbox to cross off a task. Add your own tasks too.</div>
+  <div class="todo-wrap">
+    <div class="todo-box">
+      <h2>My daily tasks</h2>
+      <ul id="todo-list">
+        <li><input type="checkbox"> <span>Read for 30 minutes</span></li>
+        <li><input type="checkbox"> <span>Practice HTML &amp; CSS</span></li>
+        <li><input type="checkbox"> <span>Go for a walk</span></li>
+        <li><input type="checkbox"> <span>Drink 8 glasses of water</span></li>
+      </ul>
+      <div class="todo-add">
+        <input type="text" id="new-task" placeholder="Add a new task...">
+        <button onclick="addTask()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PROJECT 3 — CONTACT FORM
+══════════════════════════════════ -->
+<div class="page" id="p3">
+  <div class="page-title">Contact Form <span class="badge" style="background:#FAECE7;color:#993C1D">HTML + CSS + JS</span></div>
+  <div class="page-desc">A styled form with name, email, message, and a working submit.</div>
+  <div class="form-wrap">
+    <div class="form-box">
+      <h2>Contact me</h2>
+      <div id="form-fields">
+        <div class="field">
+          <label>Your name</label>
+          <input type="text" id="contact-name" placeholder="e.g. Ahmed">
+        </div>
+        <div class="field">
+          <label>Email address</label>
+          <input type="email" id="contact-email" placeholder="ahmed@email.com">
+        </div>
+        <div class="field">
+          <label>Message</label>
+          <textarea id="contact-msg" rows="4" placeholder="Write your message here..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Send message</button>
+      </div>
+      <div class="form-success" id="form-success">
+        ✅ Message sent! Thank you for reaching out.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PROJECT 4 — PRICING CARDS
+══════════════════════════════════ -->
+<div class="page" id="p4">
+  <div class="page-title">Pricing Cards <span class="badge" style="background:#E6F1FB;color:#185FA5">HTML + CSS Flexbox</span></div>
+  <div class="page-desc">Three side-by-side pricing cards using flexbox. Resize the window to see them stack.</div>
+  <div class="pricing-wrapper">
+
+    <div class="pricing-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0 <span>/ mo</span></div>
+      <ul class="plan-features">
+        <li>5 projects</li>
+        <li>1 GB storage</li>
+        <li>Email support</li>
+      </ul>
+      <button class="plan-btn">Get started</button>
+    </div>
+
+    <div class="pricing-card popular">
+      <div class="popular-badge">⭐ Popular</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">$12 <span>/ mo</span></div>
+      <ul class="plan-features">
+        <li>50 projects</li>
+        <li>20 GB storage</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="plan-btn primary">Get started</button>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Team</div>
+      <div class="plan-price">$49 <span>/ mo</span></div>
+      <ul class="plan-features">
+        <li>Unlimited projects</li>
+        <li>100 GB storage</li>
+        <li>24/7 support</li>
+      </ul>
+      <button class="plan-btn">Get started</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PROJECT 5 — COLOR CHANGER
+══════════════════════════════════ -->
+<div class="page" id="p5">
+  <div id="color-page">
+    <div class="page-title">Background Color Changer <span class="badge" style="background:#E1F5EE;color:#0F6E56">JavaScript</span></div>
+    <div class="page-desc">Click any color button to change the background instantly.</div>
+    <div class="color-btn-row">
+      <button class="color-btn" style="background:#ffdd99;color:#6b4c00" data-color="#ffdd99" data-name="Warm Yellow" onclick="changeColor(this)">Yellow</button>
+      <button class="color-btn" style="background:#a8e6cf;color:#085041" data-color="#a8e6cf" data-name="Mint Green" onclick="changeColor(this)">Green</button>
+      <button class="color-btn" style="background:#c9b8f5;color:#26215c" data-color="#c9b8f5" data-name="Soft Purple" onclick="changeColor(this)">Purple</button>
+      <button class="color-btn" style="background:#f5b8b8;color:#501313" data-color="#f5b8b8" data-name="Light Red" onclick="changeColor(this)">Red</button>
+      <button class="color-btn" style="background:#b8d8f5;color:#042c53" data-color="#b8d8f5" data-name="Sky Blue" onclick="changeColor(this)">Blue</button>
+      <button class="color-btn" style="background:#f5e6b8;color:#412402" data-color="#f5e6b8" data-name="Warm Amber" onclick="changeColor(this)">Amber</button>
+      <button class="color-btn" style="background:#f0f0f0;color:#333" data-color="#f4f4f4" data-name="Default" onclick="changeColor(this)">Reset</button>
+    </div>
+    <div id="color-label">Click a button to pick a color</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PROJECT 6 — TIP CALCULATOR
+══════════════════════════════════ -->
+<div class="page" id="p6">
+  <div class="page-title">Tip Calculator <span class="badge" style="background:#FAEEDA;color:#633806">JavaScript</span></div>
+  <div class="page-desc">Enter your bill, pick a tip percentage, and see the total instantly.</div>
+  <div class="calc-wrap">
+    <div class="calculator">
+      <h2>Tip calculator</h2>
+
+      <div class="field">
+        <label>Bill amount ($)</label>
+        <input type="number" id="bill" placeholder="e.g. 50.00" oninput="calculate()">
+      </div>
+
+      <div class="field">
+        <label>Tip percentage</label>
+        <div class="tip-btns">
+          <button class="tip-btn" data-tip="10" onclick="selectTip(this)">10%</button>
+          <button class="tip-btn" data-tip="15" onclick="selectTip(this)">15%</button>
+          <button class="tip-btn" data-tip="20" onclick="selectTip(this)">20%</button>
+          <button class="tip-btn" data-tip="25" onclick="selectTip(this)">25%</button>
+        </div>
+      </div>
+
+      <div class="split-row">
+        <label>Split between</label>
+        <input type="number" id="split" value="1" min="1" oninput="calculate()">
+        <span class="split-note">people</span>
+      </div>
+
+      <div class="result-box" style="margin-top: 16px;">
+        <div class="result-row">
+          <span>Bill</span>
+          <span id="bill-out">$0.00</span>
+        </div>
+        <div class="result-row">
+          <span>Tip (<span id="tip-pct-label">0</span>%)</span>
+          <span id="tip-out">$0.00</span>
+        </div>
+        <div class="result-row">
+          <span>Total</span>
+          <span id="total-out">$0.00</span>
+        </div>
+        <div class="result-row total">
+          <span>Per person</span>
+          <span id="per-person-out">$0.00</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT FOR ALL PROJECTS
+══════════════════════════════════ -->
+<script>
+
+  /* ── Navigation ── */
+  function show(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  /* ── Project 2: To-Do List ── */
+  document.addEventListener('click', function(e) {
+    const li = e.target.closest('#todo-list li');
+    if (!li) return;
+    const cb = li.querySelector('input[type="checkbox"]');
+    if (e.target !== cb) { cb.checked = !cb.checked; }
+    li.classList.toggle('done', cb.checked);
+  });
+
+  function addTask() {
+    const input = document.getElementById('new-task');
+    const text = input.value.trim();
+    if (!text) return;
+    const li = document.createElement('li');
+    li.innerHTML = '<input type="checkbox"> <span>' + text + '</span>';
+    document.getElementById('todo-list').appendChild(li);
+    input.value = '';
+    input.focus();
+  }
+
+  document.getElementById('new-task').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') addTask();
+  });
+
+  /* ── Project 3: Contact Form ── */
+  function submitForm() {
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const msg = document.getElementById('contact-msg').value.trim();
+    if (!name || !email || !msg) {
+      alert('Please fill in all fields before sending.');
+      return;
+    }
+    document.getElementById('form-fields').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  /* ── Project 5: Color Changer ── */
+  function changeColor(btn) {
+    const color = btn.dataset.color;
+    const name = btn.dataset.name;
+    document.getElementById('color-page').style.backgroundColor = color;
+    document.getElementById('color-label').textContent = 'Current color: ' + name;
+  }
+
+  /* ── Project 6: Tip Calculator ── */
+  let selectedTip = 0;
+
+  function selectTip(btn) {
+    document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedTip = parseFloat(btn.dataset.tip);
+    document.getElementById('tip-pct-label').textContent = selectedTip;
+    calculate();
+  }
+
+  function calculate() {
+    const bill = parseFloat(document.getElementById('bill').value) || 0;
+    const split = parseInt(document.getElementById('split').value) || 1;
+    const tipAmt = bill * (selectedTip / 100);
+    const total = bill + tipAmt;
+    const perPerson = total / split;
+
+    document.getElementById('bill-out').textContent = '$' + bill.toFixed(2);
+    document.getElementById('tip-out').textContent = '$' + tipAmt.toFixed(2);
+    document.getElementById('total-out').textContent = '$' + total.toFixed(2);
+    document.getElementById('per-person-out').textContent = '$' + perPerson.toFixed(2);
+  }
+
+</script>
+</body>
+</html>
